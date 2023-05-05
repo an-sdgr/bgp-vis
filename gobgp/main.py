@@ -1,9 +1,9 @@
 from proto import gobgp_pb2 as gobgp
-from wrap import GoBGPQueryWrapper
+from wrap import wrapper
 
 gobgp_target = {"target_ipv4_address": "localhost", "target_rpc_port": 50051}
 
-rpc = GoBGPQueryWrapper(**gobgp_target)
+rpc = wrapper(**gobgp_target)
 
 res = rpc.debug_peers()
 

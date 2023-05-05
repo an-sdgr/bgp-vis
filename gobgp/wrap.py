@@ -11,7 +11,7 @@ from proto import attribute_pb2
 from proto import capability_pb2
 
 
-class GoBGPQueryWrapper:
+class wrapper:
     """Class to add abstraction for RPC calls to a GoBGP Instance"""
 
     def __init__(
