@@ -9,6 +9,6 @@ res = rpc.debug_peers()
 
 print(res)
 
-# graph = graphing.build_nx_from_lsdb(lsdb)
+# graph = graphing.build_nx_from_peers(peers)
 
 # graphing.draw_pyplot_graph(graph)
