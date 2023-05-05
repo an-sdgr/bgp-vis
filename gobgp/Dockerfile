@@ -1,5 +1,4 @@
-# FROM osrg/gobgp:latest
-FROM python:3.10.5-alpine3.16
+FROM alpine:3.17
 
 # needed for envsubst
 RUN apk add gettext
