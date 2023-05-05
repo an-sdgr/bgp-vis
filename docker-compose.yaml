@@ -9,6 +9,8 @@ services:
         ipv4_address: 10.10.0.1
     env_file:
       - "./gobgp/env/rr.env"
+    ports:
+      - 50051:50051
 
   client:
     build: ./gobgp
