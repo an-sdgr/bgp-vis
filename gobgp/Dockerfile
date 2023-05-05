@@ -2,7 +2,7 @@ FROM alpine:3.17
 
 ENV GOBGP_VERSION=3.14.0
 
-RUN apk add --no-cache gettext bash && \
+RUN apk add --no-cache gettext bash bash-completion && \
     rm -fr /var/cache/apk/*
 
 RUN mkdir /gobgp
@@ -17,6 +17,9 @@ RUN chmod +x gobgpd
 
 # add gobgp to path
 RUN echo "PATH=$PATH:/gobgp" > /root/.bashrc
+
+RUN ./gobgp --gen-cmpl --bash-cmpl-file=/root/gobgp-completion.sh
+RUN echo "source /root/gobgp-completion.sh" > /root/.bashrc
 
 # gobgp config
 RUN mkdir templates
