@@ -11,6 +11,7 @@ WORKDIR /gobgp
 # gobgp install
 RUN wget https://github.com/osrg/gobgp/releases/download/v${GOBGP_VERSION}/gobgp_${GOBGP_VERSION}_linux_amd64.tar.gz
 RUN tar -xzvf gobgp_${GOBGP_VERSION}_linux_amd64.tar.gz
+RUN rm gobgp_${GOBGP_VERSION}_linux_amd64.tar.gz
 RUN chmod +x gobgp
 RUN chmod +x gobgpd
 
@@ -18,8 +19,9 @@ RUN chmod +x gobgpd
 RUN echo "PATH=$PATH:/gobgp" > /root/.bashrc
 
 # gobgp config
-COPY ./gobgpd-client.conf gobgpd-client.template
-COPY ./gobgpd-rr.conf gobgpd-rr.template
+RUN mkdir templates
+COPY ./gobgpd-client.conf templates/gobgpd-client.template
+COPY ./gobgpd-rr.conf templates/gobgpd-rr.template
 
 # entrypoint
 COPY ./entrypoint.sh /gobgp/entrypoint.sh
