@@ -28,4 +28,11 @@ COPY ./gobgpd-rr.conf gobgpd-rr.template
 # entrypoint
 COPY ./entrypoint.sh /gobgp/entrypoint.sh
 RUN chmod +x /gobgp/entrypoint.sh
-ENTRYPOINT [ "/gobgp/entrypoint.sh" ]
+#ENTRYPOINT [ "/gobgp/entrypoint.sh" ]
+
+# tini, needed if you omit init: true in compose
+#RUN apk add tini
+#ENTRYPOINT ["tini", "--"]
+
+# Run your program under Tini
+CMD ["/gobgp/entrypoint.sh"]

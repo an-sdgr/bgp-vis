@@ -3,6 +3,7 @@ name: "vis"
 services:
   rr:
     build: ./gobgp
+    init: true
     networks:
       main:
         ipv4_address: 10.10.0.1
@@ -13,13 +14,15 @@ services:
     build: ./gobgp
     depends_on: 
       - rr
+    init: true
     networks:
       main:
+    environment:
+      - REPLICA={{.Task.Slot}}
     env_file:
       - "client.env"
     deploy:
-      mode: replicated
-      replicas: 2
+      replicas: 1
 
 networks:
   main:
