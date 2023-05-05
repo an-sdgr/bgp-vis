@@ -1,5 +1,9 @@
 #!/bin/sh
 
+# handle SIGINT and SIGTERM properly
+trap "exit" INT
+trap "exit" TERM
+
 # get system IP address, export for envsubst
 IP=$(/sbin/ip -o -4 addr list eth0 | awk '{print $4}' | cut -d/ -f1)
 export IP

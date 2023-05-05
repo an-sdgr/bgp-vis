@@ -28,4 +28,4 @@ COPY ./gobgpd-rr.conf gobgpd-rr.template
 # entrypoint
 COPY ./entrypoint.sh /gobgp/entrypoint.sh
 RUN chmod +x /gobgp/entrypoint.sh
-ENTRYPOINT /gobgp/entrypoint.sh
+ENTRYPOINT [ "/gobgp/entrypoint.sh" ]

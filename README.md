@@ -33,6 +33,10 @@ docker-compose up --build
 
 The `replicas:` parameter for the client in `docker-compose.yaml` can be used to scale the network up and down.
 
+For extreme scales ( replicas > 200 ), docker desktop may crash. [OrbStack](https://orbstack.dev/) appears to handle high volumes better. I've gotten it to work with a few thousand nodes, with minimal system resources. (10% CPU, ~2GB RAM).
+
+Generally speaking, you want to stay below 1024 hosts within a single docker network due to linux networking limitations.
+
 ## gobgp
 
 See the [gobgp docs](https://github.com/osrg/gobgp/blob/master/docs/sources/getting-started.md) for more info.
