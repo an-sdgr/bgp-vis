@@ -1,5 +1,7 @@
 FROM alpine:3.17
 
+ENV GOBGP_VERSION=3.14.0
+
 RUN apk add --no-cache gettext bash && \
     rm -fr /var/cache/apk/*
 
@@ -7,8 +9,8 @@ RUN mkdir /gobgp
 WORKDIR /gobgp
 
 # gobgp install
-RUN wget https://github.com/osrg/gobgp/releases/download/v3.14.0/gobgp_3.14.0_linux_amd64.tar.gz
-RUN tar -xzvf gobgp_3.14.0_linux_amd64.tar.gz
+RUN wget https://github.com/osrg/gobgp/releases/download/v${GOBGP_VERSION}/gobgp_${GOBGP_VERSION}_linux_amd64.tar.gz
+RUN tar -xzvf gobgp_${GOBGP_VERSION}_linux_amd64.tar.gz
 RUN chmod +x gobgp
 RUN chmod +x gobgpd
 
