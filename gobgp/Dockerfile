@@ -19,7 +19,7 @@ RUN chmod +x gobgpd
 RUN echo "PATH=$PATH:/gobgp" > /root/.bashrc
 
 RUN ./gobgp --gen-cmpl --bash-cmpl-file=/root/gobgp-completion.sh
-RUN echo "source /root/gobgp-completion.sh" > /root/.bashrc
+RUN echo "source /root/gobgp-completion.sh" >> /root/.bashrc
 
 # gobgp config
 RUN mkdir templates
