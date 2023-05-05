@@ -5,9 +5,9 @@ IP=$(/sbin/ip -o -4 addr list eth0 | awk '{print $4}' | cut -d/ -f1)
 export IP
 
 # render the template using environment vars
-envsubst < "/root/gobgp/$CONF.template" > /root/gobgp/gobgpd.conf
+envsubst < "/gobgp/$CONF.template" > /gobgp/gobgpd.conf
 
 echo "starting $CONF id $IP AS $AS"
 
 # run gobgp with our config file
-exec /root/gobgp/gobgpd -f /root/gobgp/gobgpd.conf
+exec /gobgp/gobgpd -f /gobgp/gobgpd.conf
