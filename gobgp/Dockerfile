@@ -1,13 +1,7 @@
 FROM alpine:3.17
 
-# needed for envsubst
-RUN apk add gettext
-
-# not necessary, but nice to have
-RUN apk add bash
-
-# again, not necessary, but nice to have
-RUN apk add vim
+RUN apk add --no-cache gettext bash && \
+    rm -fr /var/cache/apk/*
 
 RUN mkdir /gobgp
 WORKDIR /gobgp
