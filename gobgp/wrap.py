@@ -31,14 +31,13 @@ class GoBGPQueryWrapper:
             channel = grpc.insecure_channel(f"{target_ipv4_address}:{target_rpc_port}")
             self.stub = gobgp_pb2_grpc.GobgpApiStub(channel)
 
-
     def __get_bgp_peers(self) -> list:
         """RPC query for BGP Peers
 
-        Sends gobgp.ListPathRequest object over RPC session to get BGP-LS NLRI objects
+        Sends gobgp.ListPeerRequest object over RPC session to get peer objects
 
         Returns:
-            List of NLRI objects for the BGP-LS AFI/SAFI
+            List of BGP Peer objects
 
         """
         request = gobgp.ListPeerRequest()
