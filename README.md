@@ -1,9 +1,11 @@
-# gobgp in docker
+# bgp-vis
 
-This is an example repo showing how to use gobgp and docker to stand up BGP configurations.
+This is a project exploring BGP visualization and discovery.
 
 The environment files `client.env` and `rr.env` are used to create separate configurations
 for route-reflectors and route-reflector-client routers.
+
+A peer group is configured to avoid having to configure every peer relationship with `N` routers.
 
 ## Usage
 
