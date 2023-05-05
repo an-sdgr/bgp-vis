@@ -13,6 +13,16 @@ A peer group is configured to avoid having to configure every peer relationship 
 docker compose up
 ```
 
+Connect to the route-reflector, and validate peering:
+
+```shell-session
+docker exec -it vis-rr-1 /bin/bash
+
+bash-5.1# gobgp neighbor
+Peer         AS  Up/Down State       |#Received  Accepted
+10.10.0.2 64600 00:00:00 Establ      |        0         0
+```
+
 After making configuration changes:
 
 ```shell-session
@@ -25,14 +35,6 @@ If you have issues with duplicate IP addresses, try running this and waiting a f
 docker-compose down --remove-orphans
 ```
 
-## Interaction
-
-You can connect to the containers using their name:
-
-```shell-session
-docker exec -it vis-rr-1 /bin/bash
-```
-
-From inside the container, `gobgp` is the binary used to interact with the router.
+## gobgp
 
 See the [gobgp docs](https://github.com/osrg/gobgp/blob/master/docs/sources/getting-started.md) for more info.
