@@ -20,8 +20,8 @@ RUN echo "PATH=$PATH:/gobgp" > /root/.bashrc
 
 # gobgp config
 RUN mkdir templates
-COPY ./gobgpd-client.conf templates/gobgpd-client.template
-COPY ./gobgpd-rr.conf templates/gobgpd-rr.template
+COPY ./cfg/client.yaml templates/client.yaml
+COPY ./cfg/rr.yaml templates/rr.yaml
 
 # entrypoint
 COPY ./entrypoint.sh /gobgp/entrypoint.sh
