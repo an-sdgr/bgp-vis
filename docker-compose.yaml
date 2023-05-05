@@ -8,7 +8,7 @@ services:
       main:
         ipv4_address: 10.10.0.1
     env_file:
-      - "rr.env"
+      - "./gobgp/env/rr.env"
 
   client:
     build: ./gobgp
@@ -20,7 +20,7 @@ services:
     environment:
       - REPLICA={{.Task.Slot}}
     env_file:
-      - "client.env"
+      - "./gobgp/env/client.env"
     deploy:
       replicas: 2
 
