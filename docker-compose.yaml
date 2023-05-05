@@ -11,10 +11,15 @@ services:
 
   client:
     build: ./gobgp
+    depends_on: 
+      - rr
     networks:
       main:
     env_file:
       - "client.env"
+    deploy:
+      mode: replicated
+      replicas: 2
 
 networks:
   main:

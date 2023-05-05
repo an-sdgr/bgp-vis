@@ -29,11 +29,9 @@ After making configuration changes:
 docker-compose up --build
 ```
 
-If you have issues with duplicate IP addresses, try running this and waiting a few seconds.
+## Scaling
 
-```shell-session
-docker-compose down --remove-orphans
-```
+The `replicas:` parameter for the client in `docker-compose.yaml` can be used to scale the network up and down.
 
 ## gobgp
 
@@ -45,7 +43,7 @@ Example, add a route on a client:
 
 ```shell-session
 docker exec -it vis-client-1 /bin/bash
-5d90b0e0f7ab:/gobgp# gobgp global rib add 10.33.0.0/16 -a ipv4
+5d90b0e0f7ab:/gobgp# gobgp global rib add 10.23.0.0/24 -a ipv4
 5d90b0e0f7ab:/gobgp# exit
 ```
 
@@ -56,7 +54,18 @@ docker exec -it vis-rr-1 /bin/bash
 48f54966e6e1:/gobgp# gobgp neighbor
 Peer         AS  Up/Down State       |#Received  Accepted
 10.10.0.2 64600 00:00:35 Establ      |        1         1
+....
+
 48f54966e6e1:/gobgp# gobgp global rib
    Network              Next Hop             AS_PATH              Age        Attrs
-*> 10.33.0.0/16         10.10.0.2                                 00:02:43   [{Origin: ?} {LocalPref: 100}
+*> 10.20.0.0/24         10.10.0.2                                 00:02:43   [{Origin: ?} {LocalPref: 100}
+```
+
+You can check another client of the route-reflector to validate routes are actually reflecting:
+
+```shell-session
+docker exec -it vis-client-2 /bin/bash
+gobgp global rib
+   Network              Next Hop             AS_PATH              Age        Attrs
+*> 10.20.0.0/24         10.10.0.4                                 00:00:21   [{Origin: ?} {LocalPref: 100} {Originator: 10.10.0.4} {ClusterList: [10.10.0.1]}]
 ```
