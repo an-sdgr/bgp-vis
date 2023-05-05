@@ -7,8 +7,8 @@ RUN mkdir /gobgp
 WORKDIR /gobgp
 
 # gobgp install
-RUN wget https://github.com/osrg/gobgp/releases/download/v3.4.0/gobgp_3.4.0_linux_amd64.tar.gz
-RUN tar -xzvf gobgp_3.4.0_linux_amd64.tar.gz
+RUN wget https://github.com/osrg/gobgp/releases/download/v3.14.0/gobgp_3.14.0_linux_amd64.tar.gz
+RUN tar -xzvf gobgp_3.14.0_linux_amd64.tar.gz
 RUN chmod +x gobgp
 RUN chmod +x gobgpd
 
